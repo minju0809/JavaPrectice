@@ -4,18 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Test {
-	public List<GugudanVO2> gugudan2() {
-			List<GugudanVO2> li = new ArrayList<GugudanVO2>();
-			GugudanVO2 m = null;
-			for(int dan = 2; dan <= 9; dan++) {
-				for (int i = 1; i <= 9; i++) {
-					m = new GugudanVO2();
-					m.setDan(dan);
-					m.setI(i);
-					m.setResult(dan*i);
-					li.add(m);
+	public List<GugudanVO> gugudan (GugudanVO vo) {
+		int startDan = vo.getStartDan();
+		int endDan = vo.getEndDan();
+		List<GugudanVO> li = new ArrayList<GugudanVO>();
+		for (int dan = startDan; dan <= endDan; dan++) {
+			String str = "";
+			for (int i = 1; i <= 9; i++) {
+				if(dan*i < 10) {
+					str = dan + "X" + i + "=" + " " +(dan*i) + " ";
+				} else {
+					str = dan + "X" + i + "=" + (dan*i) + " ";
 				}
+				vo = new GugudanVO();
+				vo.setStr(str);
+				li.add(vo);
 			}
+			
+		}
 		return li;
 	}
 }
@@ -23,13 +29,17 @@ class Test {
 public class MainClass {
 	public static void main(String[] args) {
 		Test test = new Test();
-		List<GugudanVO2> li = test.gugudan2();
+		
+		GugudanVO vo = new GugudanVO();
+		int startDan = 3;
+		int endDan = 7;
+		vo.setStartDan(startDan);
+		vo.setEndDan(endDan);
+		
+		List<GugudanVO> li = test.gugudan(vo);
 		for(int i = 0; i < li.size(); i++) {
-			GugudanVO2 m = li.get(i);
-			int dan = m.getDan();
-			int ii = m.getI();
-			int result = m.getResult();
-			System.out.printf("%sX%s=%2s ", dan, ii, result);
+			GugudanVO result = li.get(i);
+			System.out.print(result.getStr());
 			
 			if((i+1) % 9 == 0) {
 				System.out.println();
