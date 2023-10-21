@@ -1,49 +1,51 @@
 package ch01;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Scanner;
 
 class Test {
-	public List<GugudanVO> gugudan (GugudanVO vo) {
-		int startDan = vo.getStartDan();
-		int endDan = vo.getEndDan();
-		List<GugudanVO> li = new ArrayList<GugudanVO>();
-		for (int dan = startDan; dan <= endDan; dan++) {
-			String str = "";
-			for (int i = 1; i <= 9; i++) {
-				if(dan*i < 10) {
-					str = dan + "X" + i + "=" + " " +(dan*i) + " ";
+	public void accountBook() {
+		Scanner scanner = new Scanner(System.in);
+
+		boolean run = true;
+		int money = 0;
+
+		while (run) {
+			System.out.println("=================================");
+			System.out.println("1. 입금 | 2. 출금 | 3. 잔고 | 4. 종료");
+			System.out.println("=================================");
+			System.out.print("선택> ");
+
+			int select = scanner.nextInt();
+			int value;
+
+			if (select == 1) {
+				System.out.print("입금액> ");
+				value = scanner.nextInt();
+				money += value;
+			} else if (select == 2) {
+				System.out.print("출금액> ");
+				value = scanner.nextInt();
+				if (value > money) {
+					System.out.println("잔고보다 출금하려는 금액이 큽니다.");
 				} else {
-					str = dan + "X" + i + "=" + (dan*i) + " ";
+					money -= value;
 				}
-				vo = new GugudanVO();
-				vo.setStr(str);
-				li.add(vo);
+			} else if (select == 3) {
+				System.out.println("잔고>" + money);
+			} else if (select == 4) {
+				run = false;
+			} else {
+				System.out.println("1, 2, 3, 4번 중에서 선택해주세요.");
 			}
-			
 		}
-		return li;
+		scanner.close();
+		System.out.println("프로그램 종료");
 	}
 }
 
 public class MainClass {
 	public static void main(String[] args) {
 		Test test = new Test();
-		
-		GugudanVO vo = new GugudanVO();
-		int startDan = 3;
-		int endDan = 7;
-		vo.setStartDan(startDan);
-		vo.setEndDan(endDan);
-		
-		List<GugudanVO> li = test.gugudan(vo);
-		for(int i = 0; i < li.size(); i++) {
-			GugudanVO result = li.get(i);
-			System.out.print(result.getStr());
-			
-			if((i+1) % 9 == 0) {
-				System.out.println();
-			}
-		}
+		test.accountBook();
 	}
 }
