@@ -1,15 +1,15 @@
 package ch01;
 
-public class ScoreVO {
-	int score;
+public class RandomVO {
+	int num;
 	String str;
 
-	public int getScore() {
-		return score;
+	public int getNum() {
+		return num;
 	}
 
-	public void setScore(int score) {
-		this.score = score;
+	public void setNum(int num) {
+		this.num = num;
 	}
 
 	public String getStr() {
