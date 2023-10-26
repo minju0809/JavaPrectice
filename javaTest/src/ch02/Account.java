@@ -1,9 +1,17 @@
 package ch02;
 
 public class Account {
-	String accountNum;
-	String accountName;
-	int accountMoney;
+    private String accountNum;
+    private String accountName;
+    private int accountMoney;
+    
+    public Account() { };
+
+    public Account(String accountNum, String accountName, int accountMoney) {
+        this.accountNum = accountNum;
+        this.accountName = accountName;
+        this.accountMoney = accountMoney;
+    }
 
 	public String getAccountNum() {
 		return accountNum;
