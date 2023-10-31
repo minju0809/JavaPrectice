@@ -92,7 +92,7 @@ public class AccountApplication {
 					accountArr[i].setAccountMoney(currentBalance);
 					System.out.println("출금 완료. 현재 잔액: " + currentBalance);
 				} else {
-					System.out.println("출금액이 너무 큽니다.");
+					System.out.println("총액보다 출금하려는 금액이 더 큽니다.");
 				}
 				return;
 			}
